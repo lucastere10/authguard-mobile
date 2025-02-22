@@ -11,13 +11,11 @@ export default function SplashScreen() {
       pt={12}
       gap={16}
     >
-      {/* <Spinner size="large" color="#d33f09" /> */}
       <Image
         source={require("../../../assets/logo-color.png")}
         alt="Splash Image"
         style={{ width: 300, height: 50, resizeMode: "contain", marginBottom: 48 }}
       />
-      {/* <Text>Carregando...</Text> */}
     </Box>
   );
 }

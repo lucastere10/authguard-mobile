@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { QrCode } from "lucide-react-native";
+import { QrCode, LogOut } from "lucide-react-native";
+import { useAuth } from "@/src/context/AuthContext";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
+  const { userInfo, signOut } = useAuth();
 
   const handleQRCodeReader = () => {
     navigation.navigate("authguard");
@@ -17,10 +19,27 @@ export default function HomeScreen() {
         justifyContent: "center",
         alignItems: "center",
         padding: 32,
-        marginTop: 32,
+        marginTop: 0,
       }}
     >
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center"}}>
+      <View style={{ alignItems: "center", flexDirection: "row" }}>
+        <TouchableOpacity onPress={signOut} style={{ marginRight: 10 }}>
+          <LogOut color="#d33f09" size={24} />
+        </TouchableOpacity>
+        <View style={{ flex: 1, marginRight: 10, alignItems: "flex-end" }}>
+          <Text style={{ fontSize: 16, color: "#1f2937" }}>
+            {userInfo.data.user.name}
+          </Text>
+          <Text style={{ fontSize: 12, color: "#1f2937" }}>
+            {userInfo.data.user.email}
+          </Text>
+        </View>
+        <Image
+          source={{ uri: userInfo.data.user.photo }}
+          style={{ width: 50, height: 50, borderRadius: 50 }}
+        />
+      </View>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text
           style={{
             fontSize: 32,
@@ -29,7 +48,7 @@ export default function HomeScreen() {
             textAlign: "center",
           }}
         >
-          Simples, Prático, <Text style={{color:"#d33f09"}}>Seguro</Text>
+          Simples, Prático, <Text style={{ color: "#d33f09" }}>Seguro</Text>
         </Text>
         <Text
           style={{
@@ -50,7 +69,14 @@ export default function HomeScreen() {
           style={{ width: 400, height: 400 }}
         />
       </View>
-      <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center", marginBottom: 20 }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "flex-end",
+          alignItems: "center",
+          marginBottom: 20,
+        }}
+      >
         <TouchableOpacity
           style={{
             backgroundColor: "#d33f09",

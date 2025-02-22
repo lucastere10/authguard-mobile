@@ -13,7 +13,7 @@ export function Routes() {
 
   return (
     <NavigationContainer>
-      {!isSignedIn ? <AppRoutes /> : <AuthRoutes />}
+      {isSignedIn ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 }
