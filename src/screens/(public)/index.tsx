@@ -1,11 +1,10 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { useAuth } from "@/src/context/AuthContext";
 
 export default function LoginScreen() {
-  const handleSignInWithGoogle = () => {
-    // Implement sign-in with Google logic here
-  };
+  const { signInWithGoogle } = useAuth();
 
   return (
     <View
@@ -18,13 +17,11 @@ export default function LoginScreen() {
     >
       <View style={{ flex: 2, justifyContent: "center", alignItems: "center" }}>
         <Image
-          source={require('../../../assets/login.png')}
-          style={{width: 350, height: 350}}
+          source={require("../../../assets/login.png")}
+          style={{ width: 350, height: 350 }}
         />
       </View>
-      <View
-        style={{ flex: 2, paddingHorizontal: 20 }}
-      >
+      <View style={{ flex: 2, paddingHorizontal: 20 }}>
         <Text style={{ fontSize: 40, fontWeight: "bold", color: "#1f2937" }}>
           Seu acesso.
         </Text>
@@ -54,7 +51,7 @@ export default function LoginScreen() {
             borderRadius: 8,
             paddingHorizontal: 28,
           }}
-          onPress={handleSignInWithGoogle}
+          onPress={signInWithGoogle}
         >
           <AntDesign
             name="google"
